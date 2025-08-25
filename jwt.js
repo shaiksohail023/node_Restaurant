@@ -27,6 +27,7 @@ const jwtAuthMiddleWare = (req, res, next) => {
 const generateToken = (userData) => {
     // generate a new JWT Token using userData
     // return jwt.sign(userData, process.env.JWT_SECRET, {expiresIn: 3000}); 
+    console.log("JWT_SECRET:", process.env.JWT_SECRET);
     return jwt.sign({userData}, process.env.JWT_SECRET, {expiresIn: 3000}); 
     //expiresIn : 30 means token will expire in 30 seconds. it is not to used
     // in signup but we can used in login it is not mandatory.
