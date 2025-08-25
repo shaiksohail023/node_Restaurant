@@ -37,7 +37,6 @@ const {jwtAuthMiddleWare, generateToken} = require('./../jwt');
 router.post('/login', async(req,res) => {
     try{
         //extract username and password from req
-        console.log('reqbody', req.body);
         
         const {username, password} = req.body;
 
@@ -70,7 +69,7 @@ router.get('/profile', jwtAuthMiddleWare, async (req, res) => {
         const userData = req.user;
         console.log(userData);
         
-        const userId = userData.id || userData._id;
+        const userId = userData.id;
 
         const user = await Person.findById(userId);
 
