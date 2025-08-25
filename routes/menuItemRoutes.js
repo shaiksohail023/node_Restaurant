@@ -33,7 +33,7 @@ router.get('/:taste', async(req,res)=>{
     try{
         const taste = req.params.taste;
         if(taste == 'spicy' || taste == 'sweet' || taste == 'sour'){
-            const response = await Person.find({taste:taste});
+            const response = await MenuItem.find({taste:taste});
             console.log('Data Fetched Successfully');
             res.status(200).json(response);
         }else{
@@ -51,7 +51,7 @@ router.put('/:id', async(req,res)=>{
         const menuId = req.params.id; //Extract the id from URL Parameter
         const updatedMenuItemData = req.body;
 
-        const response = await Person.findByIdAndUpdate(menuId,updatedMenuItemData, {
+        const response = await MenuItem.findByIdAndUpdate(menuId,updatedMenuItemData, {
             new: true, //return updated document
             runValidators: true //Run mongoose validation
         })
@@ -73,7 +73,7 @@ router.put('/:id', async(req,res)=>{
 router.delete('/:id', async(req,res)=>{
     try{
         const menuId = req.params.id; //Extract the id from URL Parameter
-        const response = await Person.findByIdAndDelete(menuId);
+        const response = await MenuItem.findByIdAndDelete(menuId);
 
         if(!response){
             return res.status(400).json({error: 'MenuItem not found'});
